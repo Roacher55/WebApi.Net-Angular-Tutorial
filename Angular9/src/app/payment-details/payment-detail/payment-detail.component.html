@@ -1,0 +1,66 @@
+<form #form="ngForm"   autocomplete="off" (submit)="onSubnit(form)">
+<input type="hidden" name="PMid" [value]="getService().PMid">
+
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="far fa-user" 
+                    [class.green-icon]="CardOwnerName.valid" [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched"></i>
+                </div>
+            </div>
+        <input  name="CardOwnerName"  #CardOwnerName="ngModel"  
+        [ngModel]="getService()?.CardOwnerName" (ngModelChange)="getService().CardOwnerName = $event" class="form-control"
+         placeholder="Imię i Nazwisko Właściciela" required > 
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="far fa-credit-card" 
+                    [class.green-icon]="CardNumber.valid" [class.red-icon]="CardNumber.invalid && CardNumber.touched"></i>
+                </div>
+            </div>
+        <input name="CardNumber" #CardNumber="ngModel" 
+        [ngModel]="getService()?.CardNumber" (ngModelChange)="getService().CardNumber = $event" class="form-control"
+         placeholder="Numer karty" required maxlength="16" minlength="16">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="far fa-calendar-alt" 
+                    [class.green-icon]="ExpirationDate.valid" [class.red-icon]="ExpirationDate.invalid && ExpirationDate.touched"></i>
+                </div>
+            </div>
+        <input name="ExpirationDate" #ExpirationDate="ngModel" 
+        [ngModel]="getService()?.ExpirationDate" (ngModelChange)="getService().ExpirationDate = $event" class="form-control"
+         placeholder="MM/YY" required maxlength="5" minlength="5">
+        </div>
+        
+    </div>
+
+    
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                    <i class="fas fa-key" 
+                    [class.green-icon]="CVV.valid" [class.red-icon]="CVV.invalid && CVV.touched" ></i>
+                </div>
+            </div>
+        <input type="password" name="CVV" #CVV="ngModel" [ngModel]="getService()?.CVV" (ngModelChange)="getService().CVV = $event" class="form-control"
+         placeholder="CVV" required maxlength="3" minlength="3">
+        </div>
+    
+</div>
+    <div class="form-group">
+        <button [disabled]="form.invalid" class="btn btn-success btn-lg btn-lock" type="submit"><i class="fas fa-server"></i> Zatwierdź</button>
+    </div>
+</form>
